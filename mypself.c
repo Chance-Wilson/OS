@@ -31,15 +31,14 @@ int main(int argc, char** argv)
 //read every entry in the directory until 
 //the Null character is found signifying the 
 //end of the directory
- int j = 0;
  while ((ent = readdir(dir))!= NULL)
  {
     flag = 1;
    
-    for (i=0; ent->d_name[j];i++)
+    for (i=0; ent->d_name[i];i++)
     {
-        int LWP = j;
-        if(!isdigit(ent->d_name[j]))
+        int LWP = i;
+        if(!isdigit(ent->d_name[i]))
         {
             flag = 0;
             break;
@@ -70,7 +69,6 @@ int main(int argc, char** argv)
             //code to print Process info
             printf("%d %d %d \t%lu %lu %s\n", pid, ppid, LWP, time_s, time, cmd);
             fclose(file);
-            j++;
         }
         close(fd);
     }
